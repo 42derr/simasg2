@@ -1,0 +1,270 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.35.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://
+25/10/28 08:28:45 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hive Session ID = d6071f92-cbb8-4781-abac-e114f6731be0
+25/10/28 08:28:45 [main]: WARN session.SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+25/10/28 08:28:45 [main]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+25/10/28 08:28:45 [main]: WARN util.DriverDataSource: Registered driver with driverClassName=org.apache.derby.jdbc.EmbeddedDriver was not found, trying direct instantiation.
+25/10/28 08:28:45 [main]: WARN util.DriverDataSource: Registered driver with driverClassName=org.apache.derby.jdbc.EmbeddedDriver was not found, trying direct instantiation.
+25/10/28 08:28:45 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:45 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:45 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:45 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:45 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:45 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:28:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+Connected to: Apache Hive (version 3.1.3)
+Driver: Hive JDBC (version 3.1.3)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://> DROP TABLE IF EXISTS author_ext;
+25/10/28 08:28:47 [HiveServer2-Background-Pool: Thread-53]: ERROR metadata.Hive: Table default.author_ext not found: hive.default.author_ext table not found
+OK
+No rows affected (0.426 seconds)
+0: jdbc:hive2://> DROP TABLE IF EXISTS item_ext;
+25/10/28 08:28:47 [HiveServer2-Background-Pool: Thread-56]: ERROR metadata.Hive: Table default.item_ext not found: hive.default.item_ext table not found
+OK
+No rows affected (0.022 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> CREATE EXTERNAL TABLE IF NOT EXISTS author_ext (
+. . . . . . . . >     A_ID INT,
+. . . . . . . . >     A_FNAME STRING,
+. . . . . . . . >     A_MNAME STRING,
+. . . . . . . . >     A_LNAME STRING,
+. . . . . . . . >     A_DOB STRING,
+. . . . . . . . >     A_BIO STRING
+. . . . . . . . > )
+. . . . . . . . > ROW FORMAT DELIMITED
+. . . . . . . . > FIELDS TERMINATED BY '|'
+. . . . . . . . > STORED AS TEXTFILE
+. . . . . . . . > LOCATION '/user/hive/external/author';
+OK
+No rows affected (0.176 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> CREATE EXTERNAL TABLE IF NOT EXISTS item_ext (
+. . . . . . . . >     I_ID INT,
+. . . . . . . . >     I_TITLE STRING,
+. . . . . . . . >     I_A_ID INT,
+. . . . . . . . >     I_PUB_DATE STRING,
+. . . . . . . . >     I_PUBLISHER STRING,
+. . . . . . . . >     I_SUBJECT STRING,
+. . . . . . . . >     I_DESC STRING,
+. . . . . . . . >     I_RELATED1 INT,
+. . . . . . . . >     I_RELATED2 INT,
+. . . . . . . . >     I_RELATED3 INT,
+. . . . . . . . >     I_RELATED4 INT,
+. . . . . . . . >     I_RELATED5 INT,
+. . . . . . . . >     I_THUMBNAIL STRING,
+. . . . . . . . >     I_IMAGE STRING,
+. . . . . . . . >     I_SRP DOUBLE,
+. . . . . . . . >     I_COST DOUBLE,
+. . . . . . . . >     I_AVAIL STRING,
+. . . . . . . . >     I_STOCK INT,
+. . . . . . . . >     I_ISBN STRING,
+. . . . . . . . >     I_PAGE INT,
+. . . . . . . . >     I_BACKING STRING,
+. . . . . . . . >     I_DIMENSIONS STRING
+. . . . . . . . > )
+. . . . . . . . > ROW FORMAT DELIMITED
+. . . . . . . . > FIELDS TERMINATED BY '|'
+. . . . . . . . > STORED AS TEXTFILE
+. . . . . . . . > LOCATION '/user/hive/external/item';
+OK
+No rows affected (0.044 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> SELECT COUNT(*) AS total_authors FROM author_ext;
+25/10/28 08:28:48 [HiveServer2-Background-Pool: Thread-65]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Query ID = darren_20251028082848_7d44ddce-9868-475f-a0f0-fe7a8e66ecb3
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+25/10/28 08:28:49 [HiveServer2-Background-Pool: Thread-65]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Starting Job = job_1761635880870_0013, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0013/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0013
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+25/10/28 08:28:52 [HiveServer2-Background-Pool: Thread-65]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:28:52,917 Stage-1 map = 0%,  reduce = 0%
+2025-10-28 08:28:56,018 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.65 sec
+2025-10-28 08:29:00,128 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 1.32 sec
+MapReduce Total cumulative CPU time: 1 seconds 320 msec
+Ended Job = job_1761635880870_0013
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 1.32 sec   HDFS Read: 937241 HDFS Write: 104 SUCCESS
+Total MapReduce CPU Time Spent: 1 seconds 320 msec
+OK
++----------------+
+| total_authors  |
++----------------+
+| 2500           |
++----------------+
+1 row selected (13.266 seconds)
+0: jdbc:hive2://> SELECT COUNT(*) AS total_items FROM item_ext;
+25/10/28 08:29:01 [HiveServer2-Background-Pool: Thread-86]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Query ID = darren_20251028082901_990d8f98-6425-40e9-b13d-3cb88ebd4c66
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+25/10/28 08:29:01 [HiveServer2-Background-Pool: Thread-86]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Starting Job = job_1761635880870_0014, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0014/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0014
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+25/10/28 08:29:08 [HiveServer2-Background-Pool: Thread-86]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:29:08,718 Stage-1 map = 0%,  reduce = 0%
+2025-10-28 08:29:11,777 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.55 sec
+2025-10-28 08:29:14,847 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 1.19 sec
+MapReduce Total cumulative CPU time: 1 seconds 190 msec
+Ended Job = job_1761635880870_0014
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 1.19 sec   HDFS Read: 5154084 HDFS Write: 105 SUCCESS
+Total MapReduce CPU Time Spent: 1 seconds 190 msec
+OK
++--------------+
+| total_items  |
++--------------+
+| 10000        |
++--------------+
+1 row selected (14.62 seconds)
+0: jdbc:hive2://> SELECT 
+. . . . . . . . >     (SELECT COUNT(*) FROM author_ext) +
+. . . . . . . . >     (SELECT COUNT(*) FROM item_ext) AS total_rows_both;
+Warning: Map Join MAPJOIN[35][bigTable=?] in task 'Stage-5:MAPRED' is a cross product
+Warning: Shuffle Join JOIN[19][tables = [$hdt$_0, $hdt$_1, $hdt$_2]] in Stage 'Stage-2:MAPRED' is a cross product
+Warning: Map Join MAPJOIN[43][bigTable=?] in task 'Stage-7:MAPRED' is a cross product
+Warning: Shuffle Join JOIN[16][tables = [$hdt$_0, $hdt$_1]] in Stage 'Stage-1:MAPRED' is a cross product
+25/10/28 08:29:16 [HiveServer2-Background-Pool: Thread-106]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Query ID = darren_20251028082915_c8f38989-3515-4341-80f8-e0119a64d4d9
+Total jobs = 6
+Launching Job 1 out of 6
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+25/10/28 08:29:16 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Starting Job = job_1761635880870_0015, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0015/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0015
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+25/10/28 08:29:33 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:29:33,472 Stage-3 map = 0%,  reduce = 0%
+2025-10-28 08:29:35,560 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 0.56 sec
+2025-10-28 08:29:38,615 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 1.12 sec
+MapReduce Total cumulative CPU time: 1 seconds 120 msec
+Ended Job = job_1761635880870_0015
+Launching Job 2 out of 6
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+25/10/28 08:29:41 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1761635880870_0016, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0016/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0016
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+25/10/28 08:29:48 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:29:48,230 Stage-4 map = 0%,  reduce = 0%
+2025-10-28 08:29:51,291 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 0.59 sec
+2025-10-28 08:29:54,365 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 1.15 sec
+MapReduce Total cumulative CPU time: 1 seconds 150 msec
+Ended Job = job_1761635880870_0016
+Stage-10 is selected by condition resolver.
+Stage-1 is filtered out by condition resolver.
+25/10/28 08:29:56 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2025-10-28 08:29:57	Dump the side-table for tag: 1 with group count: 1 into file: file:/tmp/hive/java/darren/32e4841e-34ab-43b4-96cc-3bf47383ca46/hive_2025-10-28_08-29-15_922_3962015392019373974-1/-local-10009/HashTable-Stage-7/MapJoin-mapfile11--.hashtable
+2025-10-28 08:29:57	End of local task; Time Taken: 0.409 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 4 out of 6
+Number of reduce tasks is set to 0 since there's no reduce operator
+25/10/28 08:29:58 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1761635880870_0017, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0017/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0017
+Hadoop job information for Stage-7: number of mappers: 1; number of reducers: 0
+25/10/28 08:30:03 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:30:03,494 Stage-7 map = 0%,  reduce = 0%
+2025-10-28 08:30:06,532 Stage-7 map = 100%,  reduce = 0%, Cumulative CPU 0.45 sec
+MapReduce Total cumulative CPU time: 450 msec
+Ended Job = job_1761635880870_0017
+Stage-9 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+25/10/28 08:30:08 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2025-10-28 08:30:08	Starting to launch local task to process map join;	maximum memory = 239075328
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 6 out of 6
+Number of reduce tasks is set to 0 since there's no reduce operator
+25/10/28 08:30:09 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1761635880870_0018, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0018/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0018
+Hadoop job information for Stage-5: number of mappers: 1; number of reducers: 0
+25/10/28 08:30:15 [HiveServer2-Background-Pool: Thread-106]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:30:15,370 Stage-5 map = 0%,  reduce = 0%
+2025-10-28 08:30:23,557 Stage-5 map = 100%,  reduce = 0%, Cumulative CPU 0.64 sec
+MapReduce Total cumulative CPU time: 640 msec
+Ended Job = job_1761635880870_0018
+MapReduce Jobs Launched: 
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 1.12 sec   HDFS Read: 936506 HDFS Write: 116 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 1.15 sec   HDFS Read: 5153263 HDFS Write: 116 SUCCESS
+Stage-Stage-7: Map: 1   Cumulative CPU: 0.45 sec   HDFS Read: 5557 HDFS Write: 116 SUCCESS
+Stage-Stage-5: Map: 1   Cumulative CPU: 0.64 sec   HDFS Read: 7217 HDFS Write: 105 SUCCESS
+Total MapReduce CPU Time Spent: 3 seconds 360 msec
+OK
++------------------+
+| total_rows_both  |
++------------------+
+| 12500            |
++------------------+
+1 row selected (68.711 seconds)
+0: jdbc:hive2://> SELECT * FROM author_ext LIMIT 3;
+OK
+25/10/28 08:30:24 [32e4841e-34ab-43b4-96cc-3bf47383ca46 main]: WARN lazy.LazyStruct: Extra bytes detected at the end of the row! Ignoring similar problems.
++------------------+---------------------+---------------------+-----------------------+-------------------+----------------------------------------------------+
+| author_ext.a_id  | author_ext.a_fname  | author_ext.a_mname  |  author_ext.a_lname   | author_ext.a_dob  |                  author_ext.a_bio                  |
++------------------+---------------------+---------------------+-----------------------+-------------------+----------------------------------------------------+
+| 1                | 5P040               | nS0c2GP0n           | BABABABABABAOGl7xF    | 11/21/74          | Minutes search in the young, labour years. Individuals will have to come. Trousers continue in the following changes: Actions at the big, young aspects shall sleep clear, african ideas. Great, large pupils do pick. Necessary eyes to the large, small years carry long, external circumstances. Questions might carry. Lovely, actual talks might rest customers: Social, other players identify. Systems could play. Standards ride. Overseas, federal goods interfere.  |
+| 2                | cy8o                | ZkcR139U86m9K5642   | BABABABABABAALwH      | 05/06/70          | Duties give between the methods. High, other children in the numbers realise modern, good years. Mountains talk teachers. New, hot studies forget to the members. Present, good programmes will take. Soviet, parliamentary dogs avoid. Sales to the only, joint persons ought to lead various, great lips. Areas wear about. Names could get with the unable, big quantities. Common, genuine shows between the mutual, prime houses miss between the |
+| 3                | dC5                 | Imnd0eY3A2712S6F9d  | BABABABABABARI        | 11/09/84          | Big, black employers could tell. Ways exist. Available, regional waters in the limited, personal matters will have to make in the eyes. Ways should move |
++------------------+---------------------+---------------------+-----------------------+-------------------+----------------------------------------------------+
+3 rows selected (0.082 seconds)
+0: jdbc:hive2://> SELECT * FROM item_ext LIMIT 3;
+OK
+25/10/28 08:30:24 [32e4841e-34ab-43b4-96cc-3bf47383ca46 main]: WARN lazy.LazyStruct: Extra bytes detected at the end of the row! Ignoring similar problems.
++----------------+----------------------------------------------------+------------------+----------------------+-------------------------------------------+---------------------+----------------------------------------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-----------------------+-------------------+-----------------+------------------+-------------------+-------------------+------------------+------------------+---------------------+------------------------+
+| item_ext.i_id  |                  item_ext.i_title                  | item_ext.i_a_id  | item_ext.i_pub_date  |           item_ext.i_publisher            | item_ext.i_subject  |                  item_ext.i_desc                   | item_ext.i_related1  | item_ext.i_related2  | item_ext.i_related3  | item_ext.i_related4  | item_ext.i_related5  | item_ext.i_thumbnail  | item_ext.i_image  | item_ext.i_srp  | item_ext.i_cost  | item_ext.i_avail  | item_ext.i_stock  | item_ext.i_isbn  | item_ext.i_page  | item_ext.i_backing  | item_ext.i_dimensions  |
++----------------+----------------------------------------------------+------------------+----------------------+-------------------------------------------+---------------------+----------------------------------------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-----------------------+-------------------+-----------------+------------------+-------------------+-------------------+------------------+------------------+---------------------+------------------------+
+| 1              | Open, BABABABABABAOG wrong                         | 1                | 05/14/93             | Common occasions will have to             | ROMANCE             | General reasons during the long, living subjects might take with the goods. Cells continue. Small, new schools shift. Nations to the offences might show by the subsequent, simple homes. Important, elderly years encourage. Dogs from the types shall have to pull organic, top sources. Materials go to the big, french friends. Social, nuclear examples should ask. Patients strengthen for the other, northern | 9272                 | 9550                 | 707                  | 2253                 | 5398                 | c:\                   | c:\               | 1727.42         | 821.0            | 06/07/93          | 22                | JQyQ5MIc91ANC    | 4273             | PAPERBACK           | 8.49x69.77x55.64       |
+| 2              | Children with BABABABABABAAL the other, necessary  | 2                | 04/10/91             | Activities may forget. Blue birds need?   | COOKING             | Similar, southern goods know to the centres. Round, domestic months must improve probably on the thanks. Attitudes shall have to land. Full, russian walls could control. Useful, economic hundreds make at the nuclear, great colours. Cultural, immediate ministers give. Other, ordinary pictures make. Likely, great days satisfy before the wrong, small companies. Economic, specific women lose. Other, | 8661                 | 5159                 | 7081                 | 5701                 | 3667                 | c:\                   | c:\               | 8893.32         | 3909.3           | 04/18/91          | 25                | dFSe5WCeX3GJz    | 8473             | AUDIO               | 93.76x84.33x1.71       |
+| 3              | Years will break BABABABABABARI pleasant, free terms-- | 3                | 05/19/75             | Simple, clear feet represent. Functions   | SCIENCE-NATURE      | Hands on the british names come christian, other minutes. Members do make; Large others can appear. Bodies suffer. Wages should know by the obvious minutes. Policies ensure on the communities. Objects can cost in the interesting, early years. Active, inner points meet. Departments in the particular, human years might evaluate such as the weeks. Growing, left theories to the legal, old | 4546                 | 7449                 | 7146                 | 9690                 | 69                   | c:\                   | c:\               | 8345.49         | 3981.86          | 06/07/75          | 15                | hIs86uiW15pA6    | 9255             | PAPERBACK           | 45.30x52.68x72.80      |
++----------------+----------------------------------------------------+------------------+----------------------+-------------------------------------------+---------------------+----------------------------------------------------+----------------------+----------------------+----------------------+----------------------+----------------------+-----------------------+-------------------+-----------------+------------------+-------------------+-------------------+------------------+------------------+---------------------+------------------------+
+3 rows selected (0.065 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> Closing: 0: jdbc:hive2://
+25/10/28 08:30:24 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+25/10/28 08:30:24 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
