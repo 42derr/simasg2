@@ -1,0 +1,162 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.35.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://
+25/10/28 08:19:48 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hive Session ID = 649f298a-f3e7-425a-abf7-939e68f6ed5e
+25/10/28 08:19:49 [main]: WARN session.SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+25/10/28 08:19:49 [main]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+25/10/28 08:19:49 [main]: WARN util.DriverDataSource: Registered driver with driverClassName=org.apache.derby.jdbc.EmbeddedDriver was not found, trying direct instantiation.
+25/10/28 08:19:49 [main]: WARN util.DriverDataSource: Registered driver with driverClassName=org.apache.derby.jdbc.EmbeddedDriver was not found, trying direct instantiation.
+25/10/28 08:19:49 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:49 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:49 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:49 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:49 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:49 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:50 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:50 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:50 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:50 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:50 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+25/10/28 08:19:50 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of null yet this is not valid. Ignored
+Connected to: Apache Hive (version 3.1.3)
+Driver: Hive JDBC (version 3.1.3)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://> DROP TABLE IF EXISTS students_eval;
+OK
+No rows affected (0.594 seconds)
+0: jdbc:hive2://> DROP TABLE IF EXISTS tmp_subjects;
+OK
+No rows affected (0.059 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> CREATE TABLE students_eval (
+. . . . . . . . >     student_number INT,
+. . . . . . . . >     subjects ARRAY<STRUCT<subject_code:STRING, evaluation:INT>> 
+. . . . . . . . > )
+. . . . . . . . > ROW FORMAT DELIMITED
+. . . . . . . . > FIELDS TERMINATED BY ','
+. . . . . . . . > COLLECTION ITEMS TERMINATED BY ';'
+. . . . . . . . > MAP KEYS TERMINATED BY ':'
+. . . . . . . . > STORED AS TEXTFILE;
+OK
+No rows affected (0.184 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> CREATE TABLE tmp_subjects (
+. . . . . . . . >     student_number INT,
+. . . . . . . . >     subject_code STRING,
+. . . . . . . . >     evaluation INT
+. . . . . . . . > );
+OK
+No rows affected (0.041 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> INSERT INTO tmp_subjects VALUES
+. . . . . . . . > (1111,'CSIT111',1),
+. . . . . . . . > (1111,'CSIT121',23),
+. . . . . . . . > (1111,'CSIT101',50),
+. . . . . . . . > (1111,'CSIT235',99),
+. . . . . . . . > (1111,'ISIT312',2),
+. . . . . . . . > (1112,'CSIT101',56),
+. . . . . . . . > (1112,'CSIT111',78),
+. . . . . . . . > (1112,'CSIT115',10),
+. . . . . . . . > (1112,'ISIT312',5),
+. . . . . . . . > (1113,'CSIT121',76),
+. . . . . . . . > (1113,'CSIT235',87),
+. . . . . . . . > (1113,'ISIT312',49),
+. . . . . . . . > (1114,'CSIT111',50),
+. . . . . . . . > (1114,'ISIT312',45),
+. . . . . . . . > (1115,'ISIT115',67),
+. . . . . . . . > (1115,'CSCI235',45),
+. . . . . . . . > (1115,'CSIT127',56);
+25/10/28 08:19:52 [HiveServer2-Background-Pool: Thread-68]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Query ID = darren_20251028081952_f59c04e0-926c-4c5e-bfd9-28428b8a35cd
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+25/10/28 08:19:53 [HiveServer2-Background-Pool: Thread-68]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Starting Job = job_1761635880870_0011, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0011/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0011
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+25/10/28 08:19:55 [HiveServer2-Background-Pool: Thread-68]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:19:55,873 Stage-1 map = 0%,  reduce = 0%
+2025-10-28 08:19:58,956 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.88 sec
+2025-10-28 08:20:03,057 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 1.46 sec
+MapReduce Total cumulative CPU time: 1 seconds 460 msec
+Ended Job = job_1761635880870_0011
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+25/10/28 08:20:04 [HiveServer2-Background-Pool: Thread-68]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+Moving data to directory hdfs://localhost:9000/user/hive/warehouse/tmp_subjects/.hive-staging_hive_2025-10-28_08-19-52_071_1223374356248316072-1/-ext-10000
+Loading data to table default.tmp_subjects
+25/10/28 08:20:04 [HiveServer2-Background-Pool: Thread-68]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+25/10/28 08:20:04 [HiveServer2-Background-Pool: Thread-68]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 1.46 sec   HDFS Read: 18450 HDFS Write: 688 SUCCESS
+Total MapReduce CPU Time Spent: 1 seconds 460 msec
+OK
+No rows affected (12.264 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> INSERT INTO students_eval
+. . . . . . . . > SELECT student_number,
+. . . . . . . . >        collect_list(named_struct('subject_code', subject_code,  'evaluation', evaluation))
+. . . . . . . . > FROM tmp_subjects
+. . . . . . . . > GROUP BY student_number;
+25/10/28 08:20:04 [4018267a-2154-458b-8cf0-34affbee1c8d main]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+25/10/28 08:20:04 [HiveServer2-Background-Pool: Thread-93]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Query ID = darren_20251028082004_ddbcd611-2cee-4f54-a757-2908ba393e80
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+25/10/28 08:20:04 [HiveServer2-Background-Pool: Thread-93]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1761635880870_0012, Tracking URL = http://Darren:8088/proxy/application_1761635880870_0012/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1761635880870_0012
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+25/10/28 08:20:16 [HiveServer2-Background-Pool: Thread-93]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2025-10-28 08:20:16,354 Stage-1 map = 0%,  reduce = 0%
+2025-10-28 08:20:19,395 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 0.83 sec
+2025-10-28 08:20:28,617 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 1.39 sec
+MapReduce Total cumulative CPU time: 1 seconds 390 msec
+Ended Job = job_1761635880870_0012
+Loading data to table default.students_eval
+25/10/28 08:20:29 [HiveServer2-Background-Pool: Thread-93]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+25/10/28 08:20:29 [HiveServer2-Background-Pool: Thread-93]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 1.39 sec   HDFS Read: 10537 HDFS Write: 287 SUCCESS
+Total MapReduce CPU Time Spent: 1 seconds 390 msec
+OK
+No rows affected (25.399 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> SELECT * FROM students_eval;
+25/10/28 08:20:29 [4018267a-2154-458b-8cf0-34affbee1c8d main]: WARN metastore.ObjectStore: datanucleus.autoStartMechanismMode is set to unsupported value null . Setting it to value: ignored
+OK
++-------------------------------+----------------------------------------------------+
+| students_eval.student_number  |               students_eval.subjects               |
++-------------------------------+----------------------------------------------------+
+| 1111                          | [{"subject_code":"CSIT111","evaluation":1},{"subject_code":"CSIT121","evaluation":23},{"subject_code":"CSIT101","evaluation":50},{"subject_code":"CSIT235","evaluation":99},{"subject_code":"ISIT312","evaluation":2}] |
+| 1112                          | [{"subject_code":"CSIT101","evaluation":56},{"subject_code":"CSIT111","evaluation":78},{"subject_code":"CSIT115","evaluation":10},{"subject_code":"ISIT312","evaluation":5}] |
+| 1113                          | [{"subject_code":"CSIT121","evaluation":76},{"subject_code":"CSIT235","evaluation":87},{"subject_code":"ISIT312","evaluation":49}] |
+| 1114                          | [{"subject_code":"CSIT111","evaluation":50},{"subject_code":"ISIT312","evaluation":45}] |
+| 1115                          | [{"subject_code":"ISIT115","evaluation":67},{"subject_code":"CSCI235","evaluation":45},{"subject_code":"CSIT127","evaluation":56}] |
++-------------------------------+----------------------------------------------------+
+5 rows selected (0.086 seconds)
+0: jdbc:hive2://> 
+0: jdbc:hive2://> Closing: 0: jdbc:hive2://
+25/10/28 08:20:29 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+25/10/28 08:20:29 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
